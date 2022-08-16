@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "399010243351",
+    "firebase_url": "https://evenement-ee6d6.firebaseio.com",
+    "project_id": "evenement-ee6d6",
+    "storage_bucket": "evenement-ee6d6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:399010243351:android:8e8a3bb47aba8fee9e0d52",
+        "android_client_info": {
+          "package_name": "com.example.chat_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "399010243351-85grh7p58orld7vadbbub29d6h0sl598.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBa04MdxxTTZFxAmMrBM7FOPSGIXZ4rg9o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "399010243351-85grh7p58orld7vadbbub29d6h0sl598.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
