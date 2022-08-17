@@ -4,13 +4,15 @@ import 'package:get/get.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:pin_input_text_field/pin_input_text_field.dart';
 
-class VerificationScreen extends StatelessWidget {
+import '../controller/login_controller.dart';
+
+class VerificationScreen extends GetView<LoginController> {
   const VerificationScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return LoadingOverlay(
-      isLoading: false,
+    return Obx(() => LoadingOverlay(
+      isLoading: controller.isLoading.value,
       progressIndicator: SpinKitRotatingPlain(
         color: Theme.of(context).primaryColor,
       ),
@@ -108,20 +110,21 @@ class VerificationScreen extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.only(
                               left: 24, right: 24, top: 40),
-                          child: PinInputTextField(
+                          child: Obx(()=>PinInputTextField(
+                            controller: controller.otpController,
                             pinLength: 6,
                             textInputAction: TextInputAction.done,
                             decoration: CirclePinDecoration(
                                 strokeColorBuilder: FixedColorBuilder(
                                     Theme.of(context).primaryColor),
                                 hintText: "345678",
-                                errorText: null,
+                                errorText: controller.pinError.value.isEmpty? null : controller.pinError.value,
                                 strokeWidth: 2,
                                 hintTextStyle: TextStyle(
                                   color: Theme.of(context).disabledColor,
                                   fontSize: 20,
                                 )),
-                          ),
+                          )),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(
@@ -149,6 +152,7 @@ class VerificationScreen extends StatelessWidget {
                               color: Colors.transparent,
                               child: InkWell(
                                 onTap: () {
+                                  controller.verifyOTP();
                                 },
                                 borderRadius: BorderRadius.circular(30),
                                 child: const Center(
@@ -172,6 +176,6 @@ class VerificationScreen extends StatelessWidget {
           ),
         ),
       ),
-    );
+    ));
   }
 }

@@ -1,11 +1,12 @@
 import 'dart:ui';
 
-import 'package:chat_app/screens/verification_screen.dart';
+import 'package:chat_app/controller/login_controller.dart';
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class NumberScreen extends StatelessWidget {
+
+class NumberScreen extends GetView<LoginController> {
   const NumberScreen({Key? key}) : super(key: key);
 
   @override
@@ -28,7 +29,7 @@ class NumberScreen extends StatelessWidget {
                   boxShadow: [
                     BoxShadow(
                         color: Theme.of(context).disabledColor.withOpacity(0.1),
-                        offset: Offset(4, 4),
+                        offset: const Offset(4, 4),
                         blurRadius: 10)
                   ],
                   color: Theme.of(context).backgroundColor,
@@ -135,18 +136,18 @@ class NumberScreen extends StatelessWidget {
                               child: Container(
                                 height: 48,
                                 child: Center(
-                                  child: TextField(
+                                  child: Obx(()=>TextField(
+                                    controller: controller.numberController,
                                     keyboardType: TextInputType.number,
                                     cursorColor: Theme.of(context).primaryColor,
                                     maxLines: 1,
-                                    decoration: const InputDecoration(
+                                    decoration: InputDecoration(
                                         errorMaxLines: 1,
-                                        contentPadding:
-                                            EdgeInsets.only(top: 5, bottom: 5),
-                                        errorText: null,
+                                        contentPadding: const EdgeInsets.only(top: 5, bottom: 5),
+                                        errorText: controller.numberError.isEmpty? null : controller.numberError.value,
                                         border: InputBorder.none,
                                         hintText: "Number"),
-                                  ),
+                                  )),
                                 ),
                               ),
                             ),
@@ -173,7 +174,8 @@ class NumberScreen extends StatelessWidget {
                         color: Colors.transparent,
                         child: InkWell(
                           onTap: () {
-                            Get.to( VerificationScreen());
+
+                            controller.sendOtp();
                           },
                           borderRadius: BorderRadius.circular(30),
                           child: const Center(

@@ -1,10 +1,12 @@
 import 'package:chat_app/appTheme.dart';
-import 'package:chat_app/screens/chat_screen.dart';
-import 'package:chat_app/screens/splash_screen.dart';
+import 'package:chat_app/screens/UserDataScreen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+
+import 'binding/initial_binding.dart';
+import 'screens/splash_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,19 +25,21 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'Flutter Chat',
-      darkTheme: darkThemeData(context),
-      theme: lightThemeData(context),
-      themeMode: ThemeMode.system,
-      getPages: [
-        GetPage(name: Routes.SPLASH_SCREEN, page: () => SplashScreen()),
-      ],
-      initialRoute: Routes.SPLASH_SCREEN,
-      home: const SplashScreen(),
-    );
+        title: 'Flutter Chat',
+        darkTheme: darkThemeData(context),
+        theme: lightThemeData(context),
+        themeMode: ThemeMode.system,
+        initialBinding: InitialBinding(),
+        initialRoute: Routes.SPLASH_SCREEN,
+        getPages: [
+          GetPage(name: Routes.SPLASH_SCREEN, page: () => const SplashScreen()),
+          GetPage(
+              name: Routes.DATA, page: () => const UserDataScreen()),
+        ]);
   }
 }
 
 class Routes {
   static const String SPLASH_SCREEN = "/";
+  static const String DATA = "/data";
 }
