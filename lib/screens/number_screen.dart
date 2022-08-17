@@ -86,7 +86,7 @@ class NumberScreen extends GetView<LoginController> {
                             color: Colors.grey.shade600)),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(left: 24, right: 24, top: 40),
+                    padding: const EdgeInsets.only(left: 24, right: 24, top: 40),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -106,6 +106,7 @@ class NumberScreen extends GetView<LoginController> {
                           child: CountryCodePicker(
                             onChanged: (countryCode) {
                               print(countryCode.dialCode);
+                              controller.code = countryCode.dialCode??"+237";
                             },
                             closeIcon: Icon(
                               Icons.close,

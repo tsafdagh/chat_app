@@ -3,7 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../screens/UserDataScreen.dart';
+import '../screens/get_user_data_screen.dart';
+import '../screens/user_info_screen.dart';
 
 class LoginController extends GetxController {
   TextEditingController numberController = TextEditingController();
@@ -16,6 +17,7 @@ class LoginController extends GetxController {
   FirebaseAuth auth = FirebaseAuth.instance;
   AppFirebase appFirebase = AppFirebase();
   RxBool isLoading = RxBool(false);
+  var selectedImage = "".obs;
 
   @override
   void onClose() {
@@ -44,7 +46,7 @@ class LoginController extends GetxController {
       isLoading.value = true;
       await appFirebase.verifyOtp(otpController.text);
        isLoading.value = false;
-      Get.off(const UserDataScreen());
+      Get.off(const UserInfoScreen());
     }
   }
 }
